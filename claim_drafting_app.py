@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 
 # === CONFIG ===
-openai.api_key = st.secrets["OPENAI_API_KEY"]  # Set in Streamlit Cloud settings
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])  # Set in Streamlit Cloud settings
 
 # === APP TITLE ===
 st.title("🧠 AI Claim Drafting Assistant")
@@ -35,14 +35,11 @@ Output format:
 3. Dependent claim 2:
 4. Dependent claim 3:
 """
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        temperature=0.4,
-        messages=[
-            {"role": "system", "content": "You are a highly skilled US patent attorney."},
-            {"role": "user", "content": prompt}
-        ]
-    )
+    response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+    print(response.choices[0].message.content)
     return response['choices'][0]['message']['content'].strip()
 
 # === GENERATE BUTTON ===
