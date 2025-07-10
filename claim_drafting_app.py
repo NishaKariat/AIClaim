@@ -35,7 +35,7 @@ Output format:
 3. Dependent claim 2:
 4. Dependent claim 3:
 """
-    response = openai.ChatCompletion.create(
+     response = openai.ChatCompletion.create(
         model="gpt-4",
         temperature=0.4,
         messages=[
